@@ -73,6 +73,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "pagy", "~> 6.0"
+gem "pagy", "~> 5.10"
 
 gem "pg_search", "~> 2.3"
+
