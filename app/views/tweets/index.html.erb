@@ -2,19 +2,37 @@
 
 <h1>Tweets</h1>
 
+<%= raw pagy_nav(@pagy)%>
+
 <%= form_with url: tweets_path, method: :get do |form|%>
-  <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text]%>
+  <%= form.text_field :query_text, placeholder: t('username search'), value: params[:query_text]%>
  <%end%>
+<p>pg_search no funciona con la mysqlite.</p>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+  <div class="card text-center">
+    <div class="card-header">
+      <%= tweet.username %>
+    </div>
+    <div class="card-body">
+      <h6 class="card-title">Descripcion</li></h6>
+      <p class="card-text"><%= tweet.description %></p>
+      <%= link_to "Editar", edit_tweet_path(tweet) %>
+      <%= button_to "Eliminar", tweet, method: :delete%>
+    </div>
+    <div class="card-footer text-body-secondary">
+      <p class="card-text"><%= tweet.updated_at %></p>
+    </div>
+  </div>
+  <%= link_to "New tweet", new_tweet_path %>
   <% end %>
 </div>
 
+
+
+
+
 <%= raw pagy_nav(@pagy)%>
 
-<%= link_to "New tweet", new_tweet_path %>
+

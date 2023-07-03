@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   def index
     @pagy, @tweets = pagy(Tweet.all)
     if params[:query_text].present?
+      #@pagy, @tweets = pagy(@tweets.search_full_text(params[:query_text]))
       @Tweets=@tweets.search_full_text(params[:query_text])
     end
   end
